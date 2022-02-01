@@ -3,10 +3,5 @@
   "description": "Simple WhatsApp Bot",
   "repository": "https://github.com/RzxGamz/Rzx-wabot",
   "logo": "https://node-js-sample.herokuapp.com/node.png",
-  "keywords": [
-    "bot",
-    "whatsapp",
-    "multi-device",
-    "whatsapp-bot"
-  ]
+  "keywords": ["bot", "whatsapp", "whatsapp-bot"]
 }
