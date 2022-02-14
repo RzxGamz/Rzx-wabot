@@ -125,57 +125,6 @@ module.exports = rzx = async(rzx, mek) => {
 				}, MessageType.buttonsMessage, opt)
 		}
 		
-		/*
-        mimetype for sending message type document
-
-        PDF : "application/pdf"
-        DOCX : "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-        XLSX : "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-        DOC : "application/msword"
-        EXCEL : "application/msexcel"
-        */
-		async function sendButDocument (id, content, footer, img, but = [], opt = {}) {
-			rzx.sendMessage(id, {
-               contentText: content,
-               footerText: footer,
-               buttons: but,
-               "headerType": "DOCUMENT", 
-               "documentMessage": { 
-               "url": "https://mmg.whatsapp.net/d/f/Ano5cGYOFQnC51uJaqGBWiCrSJH1aDCi8-YPQMMb1N1y.enc", 
-               "mimetype": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-               "title": "@Rzxbot", 
-               "fileSha256": "8Xfe3NQDhjwVjR54tkkShLDGrIFKR9QT5EsthPyxDCI=", 
-               "fileLength": 50000000000, 
-               "pageCount": 1000, 
-               "mediaKey": "XWv4hcnpGY51qEVSO9+e+q6LYqPR3DbtT4iqS9yKhkI=", 
-               "fileName": "Rzx Bot Whatsapp", 
-               "fileEncSha256": "NI9ykWUcXKquea4BmH7GgzhMb3pAeqqwE+MTFbH/Wk8=", 
-               "directPath": "/v/t62.7119-24/35160407_568282564396101_3119299043264875885_n.enc?ccb=11-4&oh=d43befa9a76b69d757877c3d430a0752&oe=61915CEC", 
-               "mediaKeyTimestamp": "1634472176",
-               "jpegThumbnail": img}}, 
-               MessageType.buttonsMessage,
-               opt)
-		}
-		
-		async function sendProduct (id, title, desc, opt = {}) {
-			rzx.sendMessageFromContent(id, {
-		        productMessage: {
-			    product: {
-				productId: "123456789",
-				productImage: { "url": "https://mmg.whatsapp.net/d/f/AtXv_6lCycn2XXbP9ZhrkuWAun8Tu5o4oETLhEd4sgu7.enc","mimetype": "image/jpeg","fileSha256": "tUCeLtJd7G5jjj7Gs/kRG5OYqD+9AGnMPNe52600uLI=","fileLength": "31583","height": 1067,"width": 1280,"mediaKey": "kobAdSBDUu+29cbRXJ/del6INP7/qPtXJNal693trR8=","fileEncSha256": "a+0Q3wlUIgGeLZbks4pfF5W4u0tJ65VcsvdV9hoZHHo=","jpegThumbnail": "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" },
-				title: title,
-				description: desc,
-				currencyCode: "USD",
-				priceAmount1000: "50000000",
-				salePriceAmount1000: "5000",
-				productImageCount: 5,
-				url: "https://github.com/RzxGamz",
-				retailerId: "@RzxBot"
-				},
-				businessOwnerJid: "0@s.whatsapp.net"
-				}}, opt)
-		}
-		
         //=======================================================================================//
 		
 		const reply = (teks) => {
